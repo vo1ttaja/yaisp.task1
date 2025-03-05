@@ -21,9 +21,23 @@ def sort_list(list):
         i -= 1
     return list
 
-a = [3, 9, 2, 7]
-b = [8, 3, 5]
-new_list = join_lists(a, b)
+
+def read_from_file(file_path):
+    try:
+        with open(file_path, "r") as file:
+            line = file.readline().strip()
+            out_list = list(map(int, line.split(", ")))
+            return out_list
+    except FileNotFoundError:
+        print("Файл " + file_path + " не найден.")
+    except ValueError:
+        print("Не все элементы являются целыми числами.")
+    except Exception as e:
+        print("Произошла ошибка: " + e)
+
+
+list1 = read_from_file("tests/testInputFile1.txt")
+list2 = read_from_file("tests/testInputFile2.txt")
+new_list = join_lists(list1, list2)
 final_list = sort_list(new_list)
 print(final_list)
-

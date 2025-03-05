@@ -36,8 +36,18 @@ def read_from_file(file_path):
         print("Произошла ошибка: " + e)
 
 
+def list_to_str(list):
+    str0 = ""
+    for i in range(len(list) - 1):
+        str0 += str(list[i]) + ", "
+    str0 += str(list[-1])
+    return str0
+
+
 list1 = read_from_file("tests/testInputFile1.txt")
 list2 = read_from_file("tests/testInputFile2.txt")
 new_list = join_lists(list1, list2)
 final_list = sort_list(new_list)
-print(final_list)
+with open("outputFile.txt", "w") as file:
+    final_str = list_to_str(final_list)
+    file.write(final_str)

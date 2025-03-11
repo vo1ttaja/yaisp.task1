@@ -26,6 +26,8 @@ def read_from_file(file_path):
     try:
         with open(file_path, "r") as file:
             line = file.readline().strip()
+            if not line:
+                return []
             out_list = list(map(int, line.split(", ")))
             return out_list
     except FileNotFoundError:
